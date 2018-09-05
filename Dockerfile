@@ -14,8 +14,5 @@ RUN apt-get update && apt-get -y install make \
                                          curl
 RUN cd libmaxminddb-1.3.2 && ./configure && make && make check && make install && ldconfig
 
-COPY . /envoy-filter-example
+VOLUME /envoy-filter-example
 WORKDIR /envoy-filter-example
-
-RUN bazel build --verbose_failures=true //:envoy
-RUN bazel build --verbose_failures=true //http-filter-example:envoy
